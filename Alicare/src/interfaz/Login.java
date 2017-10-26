@@ -1,8 +1,13 @@
 package interfaz;
 
+import alicare.Sistema;
+
 public class Login extends javax.swing.JFrame {
 
-    public Login() {
+    Sistema sistema;
+
+    public Login(Sistema unSistema) {
+        sistema = unSistema;
         initComponents();
         setLocationRelativeTo(null);
         panelSeleccionarUsuario.setVisible(false);
@@ -276,17 +281,17 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonRUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRUActionPerformed
-        Registro rg = new Registro();
+        Registro rg = new Registro(sistema);
         rg.panelUsuario();
         dispose();
         rg.setVisible(true);
     }//GEN-LAST:event_botonRUActionPerformed
 
     private void botonRPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRPActionPerformed
-        Registro rg = new Registro();
+        Registro rg = new Registro(sistema);
         rg.panelProfesional();
         dispose();
-        rg.setVisible(true);    
+        rg.setVisible(true);
     }//GEN-LAST:event_botonRPActionPerformed
 
     private void botonSUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSUActionPerformed
@@ -304,42 +309,6 @@ public class Login extends javax.swing.JFrame {
     private void botonVolverPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverPActionPerformed
         toggleSeleccionDeProfesional();
     }//GEN-LAST:event_botonVolverPActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     public void toggleSeleccionDeUsuario() {
         if (panelSeleccionarUsuario.isVisible()) {

@@ -1,15 +1,26 @@
 package interfaz;
 
+import alicare.Sistema;
+import java.awt.Color;
+import java.io.*;
+import javax.swing.*;
 
 public class Registro extends javax.swing.JFrame {
 
-    public Registro() {
+    JFileChooser seleccionarImagen = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    FileOutputStream salida;
+    Sistema sistema;
+
+    public Registro(Sistema unSistema) {
+        sistema = unSistema;
         initComponents();
         setLocationRelativeTo(null);
         panelRegistroProfesional.setVisible(false);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -17,6 +28,7 @@ public class Registro extends javax.swing.JFrame {
         botonVolver = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
+        labelError = new javax.swing.JLabel();
         panelRegistroUsuario = new javax.swing.JPanel();
         botonFoto = new javax.swing.JButton();
         fotosDePerfil = new javax.swing.JLabel();
@@ -43,7 +55,7 @@ public class Registro extends javax.swing.JFrame {
         panelRegistroProfesional = new javax.swing.JPanel();
         botonFotoP = new javax.swing.JButton();
         fotoDePerfilP = new javax.swing.JLabel();
-        textoFechaGraduacionP1 = new javax.swing.JTextField();
+        textoPaisGraduacionP = new javax.swing.JTextField();
         textoFechaGraduacionP = new javax.swing.JTextField();
         textNameTituloP = new javax.swing.JTextField();
         textoFechaNacimientoP = new javax.swing.JTextField();
@@ -52,6 +64,7 @@ public class Registro extends javax.swing.JFrame {
         fondoProfesional = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 950));
         setMinimumSize(new java.awt.Dimension(1000, 950));
         setUndecorated(true);
         setResizable(false);
@@ -91,7 +104,13 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonRegistro);
-        botonRegistro.setBounds(207, 877, 91, 28);
+        botonRegistro.setBounds(205, 840, 91, 28);
+
+        labelError.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 255, 255));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(labelError);
+        labelError.setBounds(40, 873, 420, 30);
 
         panelRegistroUsuario.setLayout(null);
 
@@ -289,17 +308,17 @@ public class Registro extends javax.swing.JFrame {
         panelRegistroProfesional.add(fotoDePerfilP);
         fotoDePerfilP.setBounds(33, 614, 100, 100);
 
-        textoFechaGraduacionP1.setBackground(new java.awt.Color(39, 156, 19));
-        textoFechaGraduacionP1.setForeground(new java.awt.Color(255, 255, 255));
-        textoFechaGraduacionP1.setBorder(null);
-        textoFechaGraduacionP1.setOpaque(false);
-        textoFechaGraduacionP1.addActionListener(new java.awt.event.ActionListener() {
+        textoPaisGraduacionP.setBackground(new java.awt.Color(39, 156, 19));
+        textoPaisGraduacionP.setForeground(new java.awt.Color(255, 255, 255));
+        textoPaisGraduacionP.setBorder(null);
+        textoPaisGraduacionP.setOpaque(false);
+        textoPaisGraduacionP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoFechaGraduacionP1ActionPerformed(evt);
+                textoPaisGraduacionPActionPerformed(evt);
             }
         });
-        panelRegistroProfesional.add(textoFechaGraduacionP1);
-        textoFechaGraduacionP1.setBounds(215, 427, 177, 20);
+        panelRegistroProfesional.add(textoPaisGraduacionP);
+        textoPaisGraduacionP.setBounds(215, 427, 177, 20);
 
         textoFechaGraduacionP.setBackground(new java.awt.Color(39, 156, 19));
         textoFechaGraduacionP.setForeground(new java.awt.Color(255, 255, 255));
@@ -361,7 +380,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        Login lg = new Login ();
+        Login lg = new Login(sistema);
         dispose();
         lg.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
@@ -386,12 +405,45 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoFechaGraduacionPActionPerformed
 
-    private void textoFechaGraduacionP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoFechaGraduacionP1ActionPerformed
+    private void textoPaisGraduacionPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPaisGraduacionPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoFechaGraduacionP1ActionPerformed
+    }//GEN-LAST:event_textoPaisGraduacionPActionPerformed
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        // TODO add your handling code here:
+        if (panelRegistroUsuario.isVisible()) {
+            String nombre = textName.getText();
+            String apellido = textoApellido.getText();
+            String fechaNacimiento = textoFecha.getText();
+            String nacionalidad = textoNacionalidad.getText();
+            if (nombre.isEmpty() || apellido.isEmpty() || fechaNacimiento.isEmpty() || nacionalidad.isEmpty()) {
+                labelError.setForeground(Color.red);
+                labelError.setText("Se deben rellenar todos los campos de información requeridos (*)");
+            } else {
+                sistema.registroUsuario(nombre, apellido, fechaNacimiento, nacionalidad);
+                labelError.setForeground(Color.white);
+                labelError.setText("Se ha registrado el usuario exitosamente!");
+            }
+        } else {
+            String nombreP = textNameP.getText();
+            String apellidoP = textApellidoP.getText();
+            String nacimientoP = textoFechaNacimientoP.getText();
+            String nombreTitulo = textNameTituloP.getText();
+            String graduacion = textoFechaGraduacionP.getText();
+            String paisTitulo = textoPaisGraduacionP.getText();
+
+            if (nombreP.isEmpty() || apellidoP.isEmpty() || nacimientoP.isEmpty() || nombreTitulo.isEmpty() || graduacion.isEmpty() || paisTitulo.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Los campos no deben estar vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                sistema.registroProfesional(nombreP, apellidoP, nacimientoP, nombreTitulo, graduacion, paisTitulo);
+                //textNameP.setText(null);
+                //textApellidoP.setText(null);
+                //textoFechaNacimientoP.setText(null);
+                //textNameTituloP.setText(null);
+                //textoFechaGraduacionP.setText(null);
+                //textoPaisGraduacionP.setText(null);
+            }
+        }
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void radioCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCarneActionPerformed
@@ -399,61 +451,72 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_radioCarneActionPerformed
 
     private void botonFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFotoActionPerformed
-        // TODO add your handling code here:
+        if (seleccionarImagen.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionarImagen.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith(".jpg") || archivo.getName().endsWith(".png") || archivo.getName().endsWith(".gif"));
+                imagen = abrirArchivo(archivo);
+                fotosDePerfil.setIcon(new ImageIcon(imagen));
+            } else {
+                labelError.setText("Archivo no compatible!");
+            }
+        }
     }//GEN-LAST:event_botonFotoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registro().setVisible(true);
-            }
-        });
-    }
-    
     //Muesta el panel del registro profesional y cierra el panel del registro de usuario
-    
-    public void panelProfesional(){
+    public void panelProfesional() {
         if (panelRegistroUsuario.isVisible()) {
             panelRegistroUsuario.setVisible(false);
         }
         panelRegistroProfesional.setVisible(true);
     }
-    
+
     //Muestra el panel del registro de usuario y cierra el panel de registro de profesional
-    
-    public void panelUsuario(){
+    public void panelUsuario() {
         if (panelRegistroProfesional.isVisible()) {
             panelRegistroProfesional.setVisible(false);
         }
         panelRegistroUsuario.setVisible(true);
+    }
+
+    //Para la foto de perfil
+    public void guardarImagen() {
+        if (seleccionarImagen.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionarImagen.getSelectedFile();
+            if (archivo.getName().endsWith(".jpg") || archivo.getName().endsWith(".png") || archivo.getName().endsWith(".gif")) {
+                String respuesta = guardarArchivo(archivo, imagen);
+                if (respuesta != null) {
+                    labelError.setText(respuesta);
+                } else {
+                    labelError.setText("Archivo no guardado");
+                }
+            } else {
+                labelError.setText("Archivo Guardado");
+            }
+        }
+    }
+
+    public byte[] abrirArchivo(File archivo) {
+        byte[] imagenes = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagenes);
+        } catch (Exception ex) {
+
+        }
+        return imagenes;
+    }
+
+    public String guardarArchivo(File archivo, byte[] imagen) {
+        String mensaje = null;
+        try {
+            salida = new FileOutputStream(archivo);
+            salida.write(imagen);
+            mensaje = "Archivo Guardado";
+        } catch (Exception e) {
+
+        }
+        return mensaje;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -466,6 +529,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel fondoUsuario;
     private javax.swing.JLabel fotoDePerfilP;
     private javax.swing.JLabel fotosDePerfil;
+    private javax.swing.JLabel labelError;
     private javax.swing.JPanel panelRegistroProfesional;
     private javax.swing.JPanel panelRegistroUsuario;
     private javax.swing.JRadioButton radioAzucares;
@@ -490,8 +554,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField textoApellido;
     private javax.swing.JTextField textoFecha;
     private javax.swing.JTextField textoFechaGraduacionP;
-    private javax.swing.JTextField textoFechaGraduacionP1;
     private javax.swing.JTextField textoFechaNacimientoP;
     private javax.swing.JTextField textoNacionalidad;
+    private javax.swing.JTextField textoPaisGraduacionP;
     // End of variables declaration//GEN-END:variables
 }

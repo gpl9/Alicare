@@ -3,16 +3,16 @@ package alicare;
 public class Usuario extends Persona {
 
     private String nacionalidad;
-    private String preferencias;
-    private String restricciones;
+    private boolean[] preferencias;
+    private boolean[] restricciones;
 
     public Usuario() {
         this.setNacionalidad("");
-        this.setPreferencias("");
-        this.setRestricciones("");
+        this.setPreferencias(null);
+        this.setRestricciones(null);
     }
 
-    public Usuario(String unaNacionalidad, String unaPreferencias, String unaRestricciones) {
+    public Usuario(String unaNacionalidad, boolean[] unaPreferencias, boolean[] unaRestricciones) {
         this.setNacionalidad(unaNacionalidad);
         this.setPreferencias(unaPreferencias);
         this.setRestricciones(unaRestricciones);
@@ -26,19 +26,19 @@ public class Usuario extends Persona {
         this.nacionalidad = unaNacionalidad;
     }
 
-    public String getPreferencias() {
+    public boolean[] getPreferencias() {
         return preferencias;
     }
 
-    public void setPreferencias(String unaPreferencias) {
+    public void setPreferencias(boolean[] unaPreferencias) {
         this.preferencias = unaPreferencias;
     }
 
-    public String getRestricciones() {
+    public boolean[] getRestricciones() {
         return restricciones;
     }
 
-    public void setRestricciones(String unaRestricciones) {
+    public void setRestricciones(boolean[] unaRestricciones) {
         this.restricciones = unaRestricciones;
     }
 
