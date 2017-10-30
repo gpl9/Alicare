@@ -141,7 +141,7 @@ public class Login extends javax.swing.JFrame {
 
         ingresarProfesional.setText("Ingresar");
         panelSeleccionarProfesional.add(ingresarProfesional);
-        ingresarProfesional.setBounds(180, 490, 90, 25);
+        ingresarProfesional.setBounds(180, 490, 90, 23);
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
@@ -213,7 +213,7 @@ public class Login extends javax.swing.JFrame {
 
         ingresarUsuario.setText("Ingresar");
         panelSeleccionarUsuario.add(ingresarUsuario);
-        ingresarUsuario.setBounds(180, 490, 90, 25);
+        ingresarUsuario.setBounds(180, 490, 90, 23);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));

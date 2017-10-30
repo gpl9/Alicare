@@ -2,14 +2,17 @@ package interfaz;
 
 import alicare.Sistema;
 import java.awt.Color;
+import java.awt.*;
 import java.io.*;
 import javax.swing.*;
+import javax.swing.filechooser.*;
 
 public class Registro extends javax.swing.JFrame {
 
     JFileChooser seleccionarImagen = new JFileChooser();
     File archivo;
     byte[] imagen;
+    ImageIcon foto;
     FileInputStream entrada;
     FileOutputStream salida;
     Sistema sistema;
@@ -30,8 +33,8 @@ public class Registro extends javax.swing.JFrame {
         botonRegistro = new javax.swing.JButton();
         labelError = new javax.swing.JLabel();
         panelRegistroUsuario = new javax.swing.JPanel();
-        botonFoto = new javax.swing.JButton();
         fotosDePerfil = new javax.swing.JLabel();
+        botonFoto = new javax.swing.JButton();
         radioGrasas = new javax.swing.JRadioButton();
         radioDulces = new javax.swing.JRadioButton();
         radioFrutas = new javax.swing.JRadioButton();
@@ -113,6 +116,8 @@ public class Registro extends javax.swing.JFrame {
         labelError.setBounds(40, 873, 420, 30);
 
         panelRegistroUsuario.setLayout(null);
+        panelRegistroUsuario.add(fotosDePerfil);
+        fotosDePerfil.setBounds(33, 719, 100, 100);
 
         botonFoto.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         botonFoto.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,64 +132,62 @@ public class Registro extends javax.swing.JFrame {
         });
         panelRegistroUsuario.add(botonFoto);
         botonFoto.setBounds(140, 800, 150, 19);
-        panelRegistroUsuario.add(fotosDePerfil);
-        fotosDePerfil.setBounds(33, 719, 100, 100);
 
         radioGrasas.setBackground(new java.awt.Color(39, 156, 19));
         radioGrasas.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioGrasas.setForeground(new java.awt.Color(255, 255, 255));
         radioGrasas.setText("Grasas y aceites");
         panelRegistroUsuario.add(radioGrasas);
-        radioGrasas.setBounds(30, 650, 130, 25);
+        radioGrasas.setBounds(30, 650, 130, 23);
 
         radioDulces.setBackground(new java.awt.Color(39, 156, 19));
         radioDulces.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioDulces.setForeground(new java.awt.Color(255, 255, 255));
         radioDulces.setText("Dulces");
         panelRegistroUsuario.add(radioDulces);
-        radioDulces.setBounds(30, 570, 69, 25);
+        radioDulces.setBounds(30, 570, 65, 23);
 
         radioFrutas.setBackground(new java.awt.Color(39, 156, 19));
         radioFrutas.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioFrutas.setForeground(new java.awt.Color(255, 255, 255));
         radioFrutas.setText("Frutas");
         panelRegistroUsuario.add(radioFrutas);
-        radioFrutas.setBounds(190, 570, 65, 25);
+        radioFrutas.setBounds(190, 570, 63, 23);
 
         radioLacteos.setBackground(new java.awt.Color(39, 156, 19));
         radioLacteos.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioLacteos.setForeground(new java.awt.Color(255, 255, 255));
         radioLacteos.setText("Lacteos");
         panelRegistroUsuario.add(radioLacteos);
-        radioLacteos.setBounds(350, 570, 75, 25);
+        radioLacteos.setBounds(350, 570, 71, 23);
 
         radioLegumbres.setBackground(new java.awt.Color(39, 156, 19));
         radioLegumbres.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioLegumbres.setForeground(new java.awt.Color(255, 255, 255));
         radioLegumbres.setText("Legumbres");
         panelRegistroUsuario.add(radioLegumbres);
-        radioLegumbres.setBounds(30, 610, 93, 25);
+        radioLegumbres.setBounds(30, 610, 91, 23);
 
         radioPescado.setBackground(new java.awt.Color(39, 156, 19));
         radioPescado.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioPescado.setForeground(new java.awt.Color(255, 255, 255));
         radioPescado.setText("Pescado");
         panelRegistroUsuario.add(radioPescado);
-        radioPescado.setBounds(190, 610, 79, 25);
+        radioPescado.setBounds(190, 610, 75, 23);
 
         radioVerduras.setBackground(new java.awt.Color(39, 156, 19));
         radioVerduras.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioVerduras.setForeground(new java.awt.Color(255, 255, 255));
         radioVerduras.setText("Verduras");
         panelRegistroUsuario.add(radioVerduras);
-        radioVerduras.setBounds(350, 610, 83, 25);
+        radioVerduras.setBounds(350, 610, 79, 23);
 
         radioCereales.setBackground(new java.awt.Color(39, 156, 19));
         radioCereales.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioCereales.setForeground(new java.awt.Color(255, 255, 255));
         radioCereales.setText("Cereales");
         panelRegistroUsuario.add(radioCereales);
-        radioCereales.setBounds(350, 530, 81, 25);
+        radioCereales.setBounds(350, 530, 77, 23);
 
         radioCarne.setBackground(new java.awt.Color(39, 156, 19));
         radioCarne.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -196,14 +199,14 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         panelRegistroUsuario.add(radioCarne);
-        radioCarne.setBounds(190, 530, 71, 25);
+        radioCarne.setBounds(190, 530, 67, 23);
 
         radioAzucares.setBackground(new java.awt.Color(39, 156, 19));
         radioAzucares.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioAzucares.setForeground(new java.awt.Color(255, 255, 255));
         radioAzucares.setText("Azucares");
         panelRegistroUsuario.add(radioAzucares);
-        radioAzucares.setBounds(30, 530, 83, 25);
+        radioAzucares.setBounds(30, 530, 81, 23);
 
         radioCarniboro.setBackground(new java.awt.Color(39, 156, 19));
         radioCarniboro.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -211,7 +214,7 @@ public class Registro extends javax.swing.JFrame {
         radioCarniboro.setText("Carníboro");
         radioCarniboro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioCarniboro);
-        radioCarniboro.setBounds(30, 370, 85, 25);
+        radioCarniboro.setBounds(30, 370, 83, 23);
 
         radioVegetariano.setBackground(new java.awt.Color(39, 156, 19));
         radioVegetariano.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -219,7 +222,7 @@ public class Registro extends javax.swing.JFrame {
         radioVegetariano.setText("Vegetariano");
         radioVegetariano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioVegetariano);
-        radioVegetariano.setBounds(200, 400, 99, 25);
+        radioVegetariano.setBounds(200, 400, 95, 23);
 
         radioVegano.setBackground(new java.awt.Color(39, 156, 19));
         radioVegano.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -227,7 +230,7 @@ public class Registro extends javax.swing.JFrame {
         radioVegano.setText("Vegano");
         radioVegano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioVegano);
-        radioVegano.setBounds(370, 370, 73, 25);
+        radioVegano.setBounds(370, 370, 69, 23);
 
         radioMacrobiotico.setBackground(new java.awt.Color(39, 156, 19));
         radioMacrobiotico.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -235,7 +238,7 @@ public class Registro extends javax.swing.JFrame {
         radioMacrobiotico.setText("Macrobiótico");
         radioMacrobiotico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioMacrobiotico);
-        radioMacrobiotico.setBounds(30, 430, 103, 25);
+        radioMacrobiotico.setBounds(30, 430, 101, 23);
 
         radioOrganico.setBackground(new java.awt.Color(39, 156, 19));
         radioOrganico.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -243,7 +246,7 @@ public class Registro extends javax.swing.JFrame {
         radioOrganico.setText("Orgánico");
         radioOrganico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioOrganico);
-        radioOrganico.setBounds(370, 430, 81, 25);
+        radioOrganico.setBounds(370, 430, 77, 23);
 
         textoNacionalidad.setBackground(new java.awt.Color(39, 156, 19));
         textoNacionalidad.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,6 +306,11 @@ public class Registro extends javax.swing.JFrame {
         botonFotoP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         botonFotoP.setContentAreaFilled(false);
         botonFotoP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonFotoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFotoPActionPerformed(evt);
+            }
+        });
         panelRegistroProfesional.add(botonFotoP);
         botonFotoP.setBounds(140, 697, 150, 19);
         panelRegistroProfesional.add(fotoDePerfilP);
@@ -419,7 +427,7 @@ public class Registro extends javax.swing.JFrame {
                 labelError.setForeground(Color.red);
                 labelError.setText("Se deben rellenar todos los campos de información requeridos (*)");
             } else {
-                sistema.registroUsuario(nombre, apellido, fechaNacimiento, nacionalidad);
+                sistema.registroUsuario(nombre, apellido, fechaNacimiento, nacionalidad, foto);
                 labelError.setForeground(Color.white);
                 labelError.setText("Se ha registrado el usuario exitosamente!");
             }
@@ -435,13 +443,7 @@ public class Registro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Los campos no deben estar vacíos", "ERROR", JOptionPane.ERROR_MESSAGE);
 
             } else {
-                sistema.registroProfesional(nombreP, apellidoP, nacimientoP, nombreTitulo, graduacion, paisTitulo);
-                //textNameP.setText(null);
-                //textApellidoP.setText(null);
-                //textoFechaNacimientoP.setText(null);
-                //textNameTituloP.setText(null);
-                //textoFechaGraduacionP.setText(null);
-                //textoPaisGraduacionP.setText(null);
+                sistema.registroProfesional(nombreP, apellidoP, nacimientoP, nombreTitulo, graduacion, paisTitulo, foto);
             }
         }
     }//GEN-LAST:event_botonRegistroActionPerformed
@@ -451,17 +453,43 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_radioCarneActionPerformed
 
     private void botonFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFotoActionPerformed
-        if (seleccionarImagen.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
-            archivo = seleccionarImagen.getSelectedFile();
-            if (archivo.canRead()) {
-                if (archivo.getName().endsWith(".jpg") || archivo.getName().endsWith(".png") || archivo.getName().endsWith(".gif"));
-                imagen = abrirArchivo(archivo);
-                fotosDePerfil.setIcon(new ImageIcon(imagen));
-            } else {
-                labelError.setText("Archivo no compatible!");
-            }
-        }
+        importarFoto();
     }//GEN-LAST:event_botonFotoActionPerformed
+
+    private void botonFotoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFotoPActionPerformed
+        importarFoto();
+    }//GEN-LAST:event_botonFotoPActionPerformed
+
+    public void importarFoto() {
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        //filtra los archivos que puede elegir
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "gif", "png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        //cuando el usuario apreta en guardar en el File Chooser
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            if (panelRegistroUsuario.isVisible()) {
+                fotosDePerfil.setIcon(modificarTamañoFoto(path));
+            } else {
+                fotoDePerfilP.setIcon(modificarTamañoFoto(path));
+            }
+        } //cuando el usuario apreta en guardar en el File Chooser
+        else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No File Select");
+        }
+    }
+
+    public ImageIcon modificarTamañoFoto(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(fotosDePerfil.getWidth(), fotosDePerfil.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        foto = image;
+        return image;
+    }
 
     //Muesta el panel del registro profesional y cierra el panel del registro de usuario
     public void panelProfesional() {
@@ -477,46 +505,6 @@ public class Registro extends javax.swing.JFrame {
             panelRegistroProfesional.setVisible(false);
         }
         panelRegistroUsuario.setVisible(true);
-    }
-
-    //Para la foto de perfil
-    public void guardarImagen() {
-        if (seleccionarImagen.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION) {
-            archivo = seleccionarImagen.getSelectedFile();
-            if (archivo.getName().endsWith(".jpg") || archivo.getName().endsWith(".png") || archivo.getName().endsWith(".gif")) {
-                String respuesta = guardarArchivo(archivo, imagen);
-                if (respuesta != null) {
-                    labelError.setText(respuesta);
-                } else {
-                    labelError.setText("Archivo no guardado");
-                }
-            } else {
-                labelError.setText("Archivo Guardado");
-            }
-        }
-    }
-
-    public byte[] abrirArchivo(File archivo) {
-        byte[] imagenes = new byte[1024 * 100];
-        try {
-            entrada = new FileInputStream(archivo);
-            entrada.read(imagenes);
-        } catch (Exception ex) {
-
-        }
-        return imagenes;
-    }
-
-    public String guardarArchivo(File archivo, byte[] imagen) {
-        String mensaje = null;
-        try {
-            salida = new FileOutputStream(archivo);
-            salida.write(imagen);
-            mensaje = "Archivo Guardado";
-        } catch (Exception e) {
-
-        }
-        return mensaje;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

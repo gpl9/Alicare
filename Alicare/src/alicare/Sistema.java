@@ -1,6 +1,7 @@
 package alicare;
 
 import java.util.*;
+import javax.swing.*;
 
 public class Sistema {
 
@@ -44,24 +45,25 @@ public class Sistema {
         this.getListaAlimentos().add(unAlimento);
     }
 
-    public void registroUsuario(String nombre, String apellido, String fechaNacimiento, String nacionalidad) {
+    public void registroUsuario(String nombre, String apellido, String fechaNacimiento, String nacionalidad, ImageIcon unaFotoPerfil) {
         Usuario usuarios = new Usuario();
         usuarios.setNombre(nombre);
         usuarios.setApellido(apellido);
         usuarios.setNacimiento(fechaNacimiento);
         usuarios.setNacionalidad(nacionalidad);
+        usuarios.setFotoPerfil(unaFotoPerfil);
         agregarUsuario(usuarios);
     }
 
-    public void registroProfesional(String nombre, String apellido, String nacimiento, String nombreTitulo, String graduacion, String paisTitulo) {
+    public void registroProfesional(String nombre, String apellido, String nacimiento, String nombreTitulo, String graduacion, String paisTitulo, ImageIcon fotoPerfil) {
         Profesional profesionales = new Profesional();
-
         profesionales.setNombre(nombre);
         profesionales.setApellido(apellido);
         profesionales.setNacimiento(nacimiento);
         profesionales.setNombreTitulo(nombreTitulo);
         profesionales.setGraduacion(graduacion);
         profesionales.setPaisTitulo(paisTitulo);
+        profesionales.setFotoPerfil(fotoPerfil);
         agregarProfesional(profesionales);
     }
 
