@@ -11,7 +11,6 @@ public class Registro extends javax.swing.JFrame {
 
     JFileChooser seleccionarImagen = new JFileChooser();
     File archivo;
-    byte[] imagen;
     ImageIcon foto;
     FileInputStream entrada;
     FileOutputStream salida;
@@ -138,56 +137,56 @@ public class Registro extends javax.swing.JFrame {
         radioGrasas.setForeground(new java.awt.Color(255, 255, 255));
         radioGrasas.setText("Grasas y aceites");
         panelRegistroUsuario.add(radioGrasas);
-        radioGrasas.setBounds(30, 650, 130, 23);
+        radioGrasas.setBounds(30, 650, 130, 25);
 
         radioDulces.setBackground(new java.awt.Color(39, 156, 19));
         radioDulces.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioDulces.setForeground(new java.awt.Color(255, 255, 255));
         radioDulces.setText("Dulces");
         panelRegistroUsuario.add(radioDulces);
-        radioDulces.setBounds(30, 570, 65, 23);
+        radioDulces.setBounds(30, 570, 69, 25);
 
         radioFrutas.setBackground(new java.awt.Color(39, 156, 19));
         radioFrutas.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioFrutas.setForeground(new java.awt.Color(255, 255, 255));
         radioFrutas.setText("Frutas");
         panelRegistroUsuario.add(radioFrutas);
-        radioFrutas.setBounds(190, 570, 63, 23);
+        radioFrutas.setBounds(190, 570, 65, 25);
 
         radioLacteos.setBackground(new java.awt.Color(39, 156, 19));
         radioLacteos.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioLacteos.setForeground(new java.awt.Color(255, 255, 255));
         radioLacteos.setText("Lacteos");
         panelRegistroUsuario.add(radioLacteos);
-        radioLacteos.setBounds(350, 570, 71, 23);
+        radioLacteos.setBounds(350, 570, 75, 25);
 
         radioLegumbres.setBackground(new java.awt.Color(39, 156, 19));
         radioLegumbres.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioLegumbres.setForeground(new java.awt.Color(255, 255, 255));
         radioLegumbres.setText("Legumbres");
         panelRegistroUsuario.add(radioLegumbres);
-        radioLegumbres.setBounds(30, 610, 91, 23);
+        radioLegumbres.setBounds(30, 610, 93, 25);
 
         radioPescado.setBackground(new java.awt.Color(39, 156, 19));
         radioPescado.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioPescado.setForeground(new java.awt.Color(255, 255, 255));
         radioPescado.setText("Pescado");
         panelRegistroUsuario.add(radioPescado);
-        radioPescado.setBounds(190, 610, 75, 23);
+        radioPescado.setBounds(190, 610, 79, 25);
 
         radioVerduras.setBackground(new java.awt.Color(39, 156, 19));
         radioVerduras.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioVerduras.setForeground(new java.awt.Color(255, 255, 255));
         radioVerduras.setText("Verduras");
         panelRegistroUsuario.add(radioVerduras);
-        radioVerduras.setBounds(350, 610, 79, 23);
+        radioVerduras.setBounds(350, 610, 83, 25);
 
         radioCereales.setBackground(new java.awt.Color(39, 156, 19));
         radioCereales.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioCereales.setForeground(new java.awt.Color(255, 255, 255));
         radioCereales.setText("Cereales");
         panelRegistroUsuario.add(radioCereales);
-        radioCereales.setBounds(350, 530, 77, 23);
+        radioCereales.setBounds(350, 530, 81, 25);
 
         radioCarne.setBackground(new java.awt.Color(39, 156, 19));
         radioCarne.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -199,22 +198,22 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         panelRegistroUsuario.add(radioCarne);
-        radioCarne.setBounds(190, 530, 67, 23);
+        radioCarne.setBounds(190, 530, 71, 25);
 
         radioAzucares.setBackground(new java.awt.Color(39, 156, 19));
         radioAzucares.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioAzucares.setForeground(new java.awt.Color(255, 255, 255));
         radioAzucares.setText("Azucares");
         panelRegistroUsuario.add(radioAzucares);
-        radioAzucares.setBounds(30, 530, 81, 23);
+        radioAzucares.setBounds(30, 530, 83, 25);
 
         radioCarniboro.setBackground(new java.awt.Color(39, 156, 19));
         radioCarniboro.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         radioCarniboro.setForeground(new java.awt.Color(255, 255, 255));
-        radioCarniboro.setText("Carníboro");
+        radioCarniboro.setText("Carnívoro");
         radioCarniboro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioCarniboro);
-        radioCarniboro.setBounds(30, 370, 83, 23);
+        radioCarniboro.setBounds(30, 370, 85, 25);
 
         radioVegetariano.setBackground(new java.awt.Color(39, 156, 19));
         radioVegetariano.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -222,7 +221,7 @@ public class Registro extends javax.swing.JFrame {
         radioVegetariano.setText("Vegetariano");
         radioVegetariano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioVegetariano);
-        radioVegetariano.setBounds(200, 400, 95, 23);
+        radioVegetariano.setBounds(200, 400, 99, 25);
 
         radioVegano.setBackground(new java.awt.Color(39, 156, 19));
         radioVegano.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -230,7 +229,7 @@ public class Registro extends javax.swing.JFrame {
         radioVegano.setText("Vegano");
         radioVegano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioVegano);
-        radioVegano.setBounds(370, 370, 69, 23);
+        radioVegano.setBounds(370, 370, 73, 25);
 
         radioMacrobiotico.setBackground(new java.awt.Color(39, 156, 19));
         radioMacrobiotico.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -238,7 +237,7 @@ public class Registro extends javax.swing.JFrame {
         radioMacrobiotico.setText("Macrobiótico");
         radioMacrobiotico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioMacrobiotico);
-        radioMacrobiotico.setBounds(30, 430, 101, 23);
+        radioMacrobiotico.setBounds(30, 430, 103, 25);
 
         radioOrganico.setBackground(new java.awt.Color(39, 156, 19));
         radioOrganico.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -246,7 +245,7 @@ public class Registro extends javax.swing.JFrame {
         radioOrganico.setText("Orgánico");
         radioOrganico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelRegistroUsuario.add(radioOrganico);
-        radioOrganico.setBounds(370, 430, 77, 23);
+        radioOrganico.setBounds(370, 430, 81, 25);
 
         textoNacionalidad.setBackground(new java.awt.Color(39, 156, 19));
         textoNacionalidad.setForeground(new java.awt.Color(255, 255, 255));

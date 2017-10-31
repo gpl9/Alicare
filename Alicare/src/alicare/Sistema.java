@@ -4,14 +4,14 @@ import java.util.*;
 import javax.swing.*;
 
 public class Sistema {
-
+    
     private Alimento alimento;
     private Persona profesional;
     private Persona usuario;
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Profesional> listaProfesionales;
     private ArrayList<Alimento> listaAlimentos;
-
+    
     public Sistema() {
         usuario = (Persona) new Usuario();
         profesional = (Persona) new Profesional();
@@ -20,31 +20,31 @@ public class Sistema {
         listaProfesionales = new ArrayList<>();
         listaAlimentos = new ArrayList<>();
     }
-
+    
     public ArrayList<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
-
+    
     public ArrayList<Profesional> getListaProfesionales() {
         return listaProfesionales;
     }
-
+    
     public ArrayList<Alimento> getListaAlimentos() {
         return listaAlimentos;
     }
-
+    
     public void agregarUsuario(Usuario unUsuario) {
         this.getListaUsuarios().add(unUsuario);
     }
-
+    
     public void agregarProfesional(Profesional unProfesional) {
         this.getListaProfesionales().add(unProfesional);
     }
-
+    
     public void agregarAlimentos(Alimento unAlimento) {
         this.getListaAlimentos().add(unAlimento);
     }
-
+    
     public void registroUsuario(String nombre, String apellido, String fechaNacimiento, String nacionalidad, ImageIcon unaFotoPerfil) {
         Usuario usuarios = new Usuario();
         usuarios.setNombre(nombre);
@@ -54,7 +54,7 @@ public class Sistema {
         usuarios.setFotoPerfil(unaFotoPerfil);
         agregarUsuario(usuarios);
     }
-
+    
     public void registroProfesional(String nombre, String apellido, String nacimiento, String nombreTitulo, String graduacion, String paisTitulo, ImageIcon fotoPerfil) {
         Profesional profesionales = new Profesional();
         profesionales.setNombre(nombre);
@@ -66,5 +66,16 @@ public class Sistema {
         profesionales.setFotoPerfil(fotoPerfil);
         agregarProfesional(profesionales);
     }
-
+    
+    public void registroAnimatos(String nombre, String tipo, String nutrientes, double proporcion, String anotaciones, ImageIcon imagen) {
+        Alimento alimentos = new Alimento();
+        alimentos.setNombre(nombre);
+        alimentos.setTipo(tipo);
+        alimentos.setNutrientes(nutrientes);
+        alimentos.setProporcion(proporcion);
+        alimentos.setAnotaciones(anotaciones);
+        alimentos.setImagenAlimento(imagen);
+        agregarAlimentos(alimentos);
+    }
+    
 }

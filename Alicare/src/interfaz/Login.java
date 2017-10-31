@@ -1,14 +1,24 @@
 package interfaz;
 
 import alicare.Sistema;
+import javax.swing.*;
 
 public class Login extends javax.swing.JFrame {
+
+    DefaultListModel listaModeloU;
+    DefaultListModel listaModeloP;
 
     Sistema sistema;
 
     public Login(Sistema unSistema) {
         sistema = unSistema;
         initComponents();
+        listaModeloU = new DefaultListModel();
+        listaModeloP = new DefaultListModel();
+        listaUsuarios.setModel(listaModeloU);
+        listaProfesional.setModel(listaModeloP);
+        listaUsuarios.setCellRenderer(new ListaRender(sistema, panelSeleccionarUsuario.isVisible(), panelSeleccionarProfesional.isVisible(), false));
+        listaProfesional.setCellRenderer(new ListaRender(sistema, panelSeleccionarUsuario.isVisible(), panelSeleccionarProfesional.isVisible(), false));
         setLocationRelativeTo(null);
         panelSeleccionarUsuario.setVisible(false);
         panelSeleccionarProfesional.setVisible(false);
@@ -29,13 +39,13 @@ public class Login extends javax.swing.JFrame {
         panelSeleccionarProfesional = new javax.swing.JPanel();
         botonVolverP = new javax.swing.JButton();
         ingresarProfesional = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableProfesional = new javax.swing.JTable();
+        scrollProfesional = new javax.swing.JScrollPane();
+        listaProfesional = new javax.swing.JList<>();
         panelSeleccionarUsuario = new javax.swing.JPanel();
         botonVolverU = new javax.swing.JButton();
         ingresarUsuario = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableUsuario = new javax.swing.JTable();
+        scrollUsuarios = new javax.swing.JScrollPane();
+        listaUsuarios = new javax.swing.JList<>();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,6 +59,11 @@ public class Login extends javax.swing.JFrame {
         botonInvitado.setContentAreaFilled(false);
         botonInvitado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonInvitado.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/invitado_presionado.png"))); // NOI18N
+        botonInvitado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInvitadoActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonInvitado);
         botonInvitado.setBounds(440, 910, 120, 15);
 
@@ -141,57 +156,21 @@ public class Login extends javax.swing.JFrame {
 
         ingresarProfesional.setText("Ingresar");
         panelSeleccionarProfesional.add(ingresarProfesional);
-        ingresarProfesional.setBounds(180, 490, 90, 23);
+        ingresarProfesional.setBounds(180, 490, 90, 25);
 
-        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jScrollPane3.setForeground(new java.awt.Color(255, 255, 255));
+        scrollProfesional.setBorder(null);
+        scrollProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        tableProfesional.setBackground(new java.awt.Color(39, 156, 19));
-        tableProfesional.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tableProfesional.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        tableProfesional.setForeground(new java.awt.Color(255, 255, 255));
-        tableProfesional.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Foto de perfil", "Nombre de profesional"
-            }
-        ));
-        tableProfesional.setGridColor(new java.awt.Color(255, 255, 255));
-        tableProfesional.setIntercellSpacing(new java.awt.Dimension(2, 2));
-        tableProfesional.setOpaque(false);
-        tableProfesional.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane3.setViewportView(tableProfesional);
+        listaProfesional.setBackground(new java.awt.Color(39, 156, 19));
+        listaProfesional.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        listaProfesional.setForeground(new java.awt.Color(255, 255, 255));
+        listaProfesional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listaProfesional.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        listaProfesional.setSelectionForeground(new java.awt.Color(39, 156, 19));
+        scrollProfesional.setViewportView(listaProfesional);
 
-        panelSeleccionarProfesional.add(jScrollPane3);
-        jScrollPane3.setBounds(0, 2, 450, 410);
+        panelSeleccionarProfesional.add(scrollProfesional);
+        scrollProfesional.setBounds(0, 0, 450, 470);
 
         getContentPane().add(panelSeleccionarProfesional);
         panelSeleccionarProfesional.setBounds(520, 210, 450, 680);
@@ -213,58 +192,22 @@ public class Login extends javax.swing.JFrame {
 
         ingresarUsuario.setText("Ingresar");
         panelSeleccionarUsuario.add(ingresarUsuario);
-        ingresarUsuario.setBounds(180, 490, 90, 23);
+        ingresarUsuario.setBounds(180, 490, 90, 25);
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        scrollUsuarios.setBorder(null);
+        scrollUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        tableUsuario.setBackground(new java.awt.Color(39, 156, 19));
-        tableUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tableUsuario.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        tableUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        tableUsuario.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Foto de perfil", "Nombre de usuario"
-            }
-        ));
-        tableUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tableUsuario.setGridColor(new java.awt.Color(255, 255, 255));
-        tableUsuario.setIntercellSpacing(new java.awt.Dimension(2, 2));
-        tableUsuario.setOpaque(false);
-        tableUsuario.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane2.setViewportView(tableUsuario);
+        listaUsuarios.setBackground(new java.awt.Color(39, 156, 19));
+        listaUsuarios.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        listaUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        listaUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        listaUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        listaUsuarios.setSelectionForeground(new java.awt.Color(39, 156, 19));
+        listaUsuarios.setVerifyInputWhenFocusTarget(false);
+        scrollUsuarios.setViewportView(listaUsuarios);
 
-        panelSeleccionarUsuario.add(jScrollPane2);
-        jScrollPane2.setBounds(0, 2, 450, 410);
+        panelSeleccionarUsuario.add(scrollUsuarios);
+        scrollUsuarios.setBounds(0, 0, 450, 470);
 
         getContentPane().add(panelSeleccionarUsuario);
         panelSeleccionarUsuario.setBounds(30, 210, 450, 680);
@@ -296,10 +239,14 @@ public class Login extends javax.swing.JFrame {
 
     private void botonSUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSUActionPerformed
         toggleSeleccionDeUsuario();
+        listaModeloU.clear();
+        agregarValoresListas();
     }//GEN-LAST:event_botonSUActionPerformed
 
     private void botonSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSPActionPerformed
         toggleSeleccionDeProfesional();
+        listaModeloP.clear();
+        agregarValoresListas();
     }//GEN-LAST:event_botonSPActionPerformed
 
     private void botonVolverUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverUActionPerformed
@@ -309,6 +256,12 @@ public class Login extends javax.swing.JFrame {
     private void botonVolverPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverPActionPerformed
         toggleSeleccionDeProfesional();
     }//GEN-LAST:event_botonVolverPActionPerformed
+
+    private void botonInvitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInvitadoActionPerformed
+        PantallaPrincipal pp = new PantallaPrincipal(sistema);
+        dispose();
+        pp.setVisible(true);
+    }//GEN-LAST:event_botonInvitadoActionPerformed
 
     public void toggleSeleccionDeUsuario() {
         if (panelSeleccionarUsuario.isVisible()) {
@@ -330,6 +283,21 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
+    public void agregarValoresListas() {
+        String nombre;
+        if (panelSeleccionarUsuario.isVisible()) {
+            for (int i = 0; i < sistema.getListaUsuarios().size(); i++) {
+                nombre = sistema.getListaUsuarios().get(i).getNombre();
+                listaModeloU.addElement(nombre);
+            }
+        } else {
+            for (int i = 0; i < sistema.getListaProfesionales().size(); i++) {
+                nombre = sistema.getListaProfesionales().get(i).getNombre();
+                listaModeloP.addElement(nombre);
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonInvitado;
     private javax.swing.JButton botonRP;
@@ -342,13 +310,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JButton ingresarProfesional;
     private javax.swing.JButton ingresarUsuario;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> listaProfesional;
+    private javax.swing.JList<String> listaUsuarios;
     private javax.swing.JPanel panelProfesional;
     private javax.swing.JPanel panelSeleccionarProfesional;
     private javax.swing.JPanel panelSeleccionarUsuario;
     private javax.swing.JPanel panelUsuario;
-    private javax.swing.JTable tableProfesional;
-    private javax.swing.JTable tableUsuario;
+    private javax.swing.JScrollPane scrollProfesional;
+    private javax.swing.JScrollPane scrollUsuarios;
     // End of variables declaration//GEN-END:variables
 }
